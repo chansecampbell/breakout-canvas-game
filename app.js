@@ -16,6 +16,23 @@ var paddleHeight = 10;
 var paddleWidth = 75;
 var paddleX = (canvas.width-paddleWidth)/2;
 
+// brick sizes
+var brickRowCount = 3;
+var brickColumnCount = 5;
+var brickWidth = 75;
+var brickHeight = 20;
+var brickPadding = 10;
+var brickOffsetTop = 30;
+var brickOffsetLeft = 30;
+
+var bricks = [];
+for(c=0; c<brickColumnCount; c++) {
+    bricks[c] = [];
+    for(r=0; r<brickRowCount; r++) {
+        bricks[c][r] = { x: 0, y: 0 };
+    }
+}
+
 // key press
 var rightPressed = false;
 var leftPressed = false;
@@ -41,6 +58,23 @@ function keyUpHandler(e) {
     }
 }
 
+// creation of the bricks
+function drawBricks() {
+    for(c=0; c<brickColumnCount; c++) {
+        for(r=0; r<brickRowCount; r++) {
+            var brickX = (c*(brickWidth+brickPadding))+brickOffsetLeft;
+            var brickY = (r*(brickHeight+brickPadding))+brickOffsetTop;
+            bricks[c][r].x = brickX;
+            bricks[c][r].y = brickY;
+            ctx.beginPath();
+            ctx.rect(brickX, brickY, brickWidth, brickHeight);
+            ctx.fillStyle = "#0095DD";
+            ctx.fill();
+            ctx.closePath();
+        }
+    }
+}
+
 // creation of the ball
 function drawBall() {
     ctx.beginPath();
@@ -62,6 +96,7 @@ function drawPaddle() {
 // the movement/recreation
 function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
+    drawBricks();
     drawBall();
     drawPaddle();
 
@@ -81,7 +116,7 @@ function draw() {
     if(y + dy < ballRadius) {
         dy = -dy;
     } else if(y + dy > canvas.height-ballRadius) {
-        
+
         // check for paddle collision if the bottom wall is hit
         if(x > paddleX && x < paddleX + paddleWidth) {
             dy = -dy;
