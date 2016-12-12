@@ -15,10 +15,14 @@ class Game {
             console.log("Ah");
         }
 
-        if(this.height + this.dHeight < 10 || this.height + this.dHeight > canvas.height-10) {
+        if(this.height + this.dHeight < 10) {
             this.dHeight = -this.dHeight;
             console.log("Oh");
         }  
+
+        if(this.height + this.dHeight > canvas.height-10) {
+            console.log("Uh oh");
+        }
     }
 
     draw() {
