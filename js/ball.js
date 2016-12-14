@@ -1,4 +1,6 @@
 'use strict';
+const canvas = document.getElementById("myCanvas");
+const ctx    = canvas.getContext('2d');
 
 class Ball {
 
@@ -11,4 +13,4 @@ class Ball {
     }
 }
 
-export default Ball;
+export default (new Ball);

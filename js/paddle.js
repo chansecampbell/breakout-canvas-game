@@ -1,4 +1,6 @@
 'use strict';
+const canvas = document.getElementById("myCanvas");
+const ctx    = canvas.getContext('2d');
 
 class Paddle {
     constructor() {
@@ -7,29 +9,23 @@ class Paddle {
         this.paddleX      = (canvas.width-this.paddleWidth)/2;
         this.rightPressed = false;
         this.leftPressed  = false;
-        document.addEventListener("keydown", this.keyDownHandler, false);
-        document.addEventListener("keyup", this.keyUpHandler, false);
     }
-// keydown & up not currently working
+
     keyDownHandler(e) {
-        console.log("down");
         if(e.keyCode == 39) {
             this.rightPressed = true;
-            Paddle.hello();
         } else if(e.keyCode == 37) {
             this.leftPressed = true;
         }
     }
 
     keyUpHandler(e) {
-        console.log("up");
         if(e.keyCode == 39) {
             this.rightPressed = false;
         } else if(e.keyCode == 37) {
             this.leftPressed = false;
         }
     }
-
 
     move() {
         if(this.rightPressed && this.paddleX < canvas.width-this.paddleWidth) {
@@ -46,7 +42,10 @@ class Paddle {
         ctx.fillStyle = "#0095DD";
         ctx.fill();
         ctx.closePath();
+        document.addEventListener("keydown", this.keyDownHandler.bind(this), false);
+        document.addEventListener("keyup", this.keyUpHandler.bind(this), false);
+        this.move();
     }
 }
 
-export default Paddle;
+export default (new Paddle);

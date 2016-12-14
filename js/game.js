@@ -1,5 +1,7 @@
 'use strict';
-// need to add in babel + webpack
+const canvas = document.getElementById("myCanvas");
+const ctx    = canvas.getContext('2d');
+
 import Ball from "./ball";
 import Paddle from "./paddle";
 import Bricks from "./bricks";
@@ -11,8 +13,6 @@ class Game {
         this.dx     = 2;
         this.dy     = -2;
         this.ballRadius = 10;
-        this.ball   = new Ball();
-        this.paddle = new Paddle();
     }
 
     boundaryLogic() {
@@ -29,8 +29,8 @@ class Game {
 
     draw() {             
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-        this.ball.drawBall(this.x, this.y, this.ballRadius);
-        this.paddle.drawPaddle();
+        Ball.drawBall(this.x, this.y, this.ballRadius);
+        Paddle.drawPaddle();
         this.boundaryLogic();
         this.x += this.dx;
         this.y += this.dy;
@@ -39,6 +39,4 @@ class Game {
     }
 }
 
-const canvas = document.getElementById("myCanvas");
-const ctx    = canvas.getContext('2d');
 document.addEventListener("click", () => { new Game().draw() });
