@@ -1,4 +1,9 @@
-* { padding: 0; margin: 0;  }
+* { padding: 0; margin: 0; text-align: center;  }
 
 canvas { background: #eee; display: block; margin: 30px auto; }
 
+#start, #restart { height: 40px; width: 80px; }
+
+#start { display: inline-block; }
+
+#restart { display: none; }

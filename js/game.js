@@ -1,6 +1,14 @@
 'use strict';
 const canvas = document.getElementById("myCanvas");
 const ctx    = canvas.getContext('2d');
+const start  = document.getElementById("start");
+const restart = document.getElementById("restart");
+
+start.addEventListener("click", () => {
+    new Game().draw();
+    start.style.display = "none";
+    restart.style.display = "inline-block";
+});
 
 import Ball from "./ball";
 import Paddle from "./paddle";
@@ -77,7 +85,7 @@ class Game {
 
     draw() {             
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-        
+
         Bricks.draw();
         Ball.draw(this.x, this.y);
         Paddle.draw();
@@ -93,5 +101,3 @@ class Game {
         requestAnimationFrame(this.draw.bind(this));
     }
 }
-
-document.addEventListener("click", () => { new Game().draw() });

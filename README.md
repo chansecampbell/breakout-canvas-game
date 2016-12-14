@@ -11,10 +11,9 @@
 
 ##Features to add:
 	- Stop the lives going below 0
-	- Tidy up the game logic
-	- Multiple levels to complete
-	- Different difficulties
 	- Reset functionality
-	- Scoreboard
+	- Tidy up the game logic
 	- Material design
-	- Customisable ui
+	- Create 5 levels
+	- Create 3 different speed difficulties
+    - Create customisable ui
