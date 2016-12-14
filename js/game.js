@@ -12,24 +12,47 @@ class Game {
         this.y      = canvas.height - 30;
         this.dx     = 2;
         this.dy     = -2;
-        this.ballRadius = 10;
     }
 
     boundaryLogic() {
-        if(this.x + this.dx > canvas.width-this.ballRadius) {
-            this.dx = -this.dx; 
-        } else if(this.x + this.dx < this.ballRadius) {
+        // if(this.x + this.dx > canvas.width-Ball.radius) {
+        //     this.dx = -this.dx; 
+        // } else if(this.x + this.dx < Ball.radius) {
+        //     this.dx = -this.dx;
+        // } else if(this.y + this.dy > canvas.height-Ball.radius) {
+        //     this.dy = -this.dy;
+        // } else if(this.y + this.dy < Ball.radius) {
+        //     this.dy = -this.dy;
+        // }
+            // collision logic
+        if(this.x + this.dx > canvas.width-Ball.radius || this.x + this.dx < Ball.radius) {
             this.dx = -this.dx;
-        } else if(this.y + this.dy > canvas.height-this.ballRadius) {
+        }
+
+        if(this.y + this.dy < Ball.radius) {
             this.dy = -this.dy;
-        } else if(this.y + this.dy < this.ballRadius) {
-            this.dy = -this.dy;
+        }
+
+        if(this.y + this.dy > canvas.height-Ball.radius) {
+
+            // check for paddle collision if the bottom wall is hit
+            if(this.x > Paddle.paddleX && this.x < Paddle.paddleX + Paddle.width) {
+                this.dy = -this.dy;
+            }
+            // } else {
+            //     this.x = canvas.width/2;
+            //     this.y = canvas.height-30;
+            //     this.dx = 2;
+            //     this.dy = -2;
+            //     Paddle.paddleX = (canvas.width-Paddle.width)/2;
+            // }
         }
     }
 
     draw() {             
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-        Ball.drawBall(this.x, this.y, this.ballRadius);
+        Bricks.drawBricks();
+        Ball.drawBall(this.x, this.y);
         Paddle.drawPaddle();
         this.boundaryLogic();
         this.x += this.dx;

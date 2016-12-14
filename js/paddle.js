@@ -4,9 +4,9 @@ const ctx    = canvas.getContext('2d');
 
 class Paddle {
     constructor() {
-        this.paddleHeight = 10;
-        this.paddleWidth  = 75;
-        this.paddleX      = (canvas.width-this.paddleWidth)/2;
+        this.height = 10;
+        this.width  = 75;
+        this.paddleX      = (canvas.width-this.width)/2;
         this.rightPressed = false;
         this.leftPressed  = false;
     }
@@ -28,7 +28,7 @@ class Paddle {
     }
 
     move() {
-        if(this.rightPressed && this.paddleX < canvas.width-this.paddleWidth) {
+        if(this.rightPressed && this.paddleX < canvas.width-this.width) {
             this.paddleX += 7;
         }
         else if(this.leftPressed && this.paddleX > 0) {
@@ -38,7 +38,7 @@ class Paddle {
 
     drawPaddle() {
         ctx.beginPath();
-        ctx.rect(this.paddleX, canvas.height-this.paddleHeight, this.paddleWidth, this.paddleHeight);
+        ctx.rect(this.paddleX, canvas.height-this.height, this.width, this.height);
         ctx.fillStyle = "#0095DD";
         ctx.fill();
         ctx.closePath();
