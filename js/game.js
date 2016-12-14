@@ -14,6 +14,25 @@ class Game {
         this.dy     = -2;
     }
 
+    collisionDetection() {
+        for(let c = 0; c < Bricks.columnCount; c++) {
+            for(let r = 0; r < Bricks.rowCount; r++) {
+                let b = Bricks.bricks[c][r];
+                if(b.status == 1) {
+                    if(this.x > b.x && this.x < b.x+Bricks.width && this.y > b.y && this.y < b.y+Bricks.height) {
+                        this.dy = -this.dy;
+                        b.status = 0;
+                        // score++;
+                        // if(score == brickRowCount*brickColumnCount) {
+                        //     alert("YOU WIN, CONGRATULATIONS!");
+                        //     document.location.reload();
+                        // }
+                    }
+                }  
+            }
+        }
+    }
+
     boundaryLogic() {
         // if(this.x + this.dx > canvas.width-Ball.radius) {
         //     this.dx = -this.dx; 
@@ -51,10 +70,11 @@ class Game {
 
     draw() {             
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-        Bricks.drawBricks();
-        Ball.drawBall(this.x, this.y);
-        Paddle.drawPaddle();
+        Bricks.draw();
+        Ball.draw(this.x, this.y);
+        Paddle.draw();
         this.boundaryLogic();
+        this.collisionDetection();
         this.x += this.dx;
         this.y += this.dy;
 

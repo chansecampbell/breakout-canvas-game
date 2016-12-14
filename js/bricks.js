@@ -12,10 +12,10 @@ class Bricks {
     	this.offsetTop = 30;
     	this.offsetLeft = 30;
     	this.bricks = [];
-    	this.buildBricks();
+    	this.build();
     }
 
-    buildBricks() {
+    build() {
 		for(let c = 0; c < this.columnCount; c++) {
 		    this.bricks[c] = [];
 		    for(let r = 0; r < this.rowCount; r++) {
@@ -24,7 +24,7 @@ class Bricks {
     	}
 	}
 
-    drawBricks() {
+    draw() {
     	for(let c = 0; c < this.columnCount; c++) {
         	for(let r = 0; r < this.rowCount; r++) {
             	if(this.bricks[c][r].status == 1) {

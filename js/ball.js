@@ -8,7 +8,7 @@ class Ball {
 		this.radius = 10;
 	}
 
-    drawBall(width, height) {
+    draw(width, height) {
         ctx.beginPath();
         ctx.arc(width, height, this.radius, 0, Math.PI*2);
         ctx.fillStyle = "#0095DD";

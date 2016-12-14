@@ -36,7 +36,7 @@ class Paddle {
         }
     }
 
-    drawPaddle() {
+    draw() {
         ctx.beginPath();
         ctx.rect(this.paddleX, canvas.height-this.height, this.width, this.height);
         ctx.fillStyle = "#0095DD";
