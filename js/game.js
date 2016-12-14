@@ -12,6 +12,8 @@ class Game {
         this.y      = canvas.height - 30;
         this.dx     = 2;
         this.dy     = -2;
+        this.score  = 0;
+        this.lives  = 3;
     }
 
     collisionDetection() {
@@ -22,11 +24,10 @@ class Game {
                     if(this.x > b.x && this.x < b.x+Bricks.width && this.y > b.y && this.y < b.y+Bricks.height) {
                         this.dy = -this.dy;
                         b.status = 0;
-                        // score++;
-                        // if(score == brickRowCount*brickColumnCount) {
-                        //     alert("YOU WIN, CONGRATULATIONS!");
-                        //     document.location.reload();
-                        // }
+                        this.score++;
+                        if(this.score == Bricks.rowCount*Bricks.columnCount) {
+                            alert("YOU WIN, CONGRATULATIONS!");
+                        }
                     }
                 }  
             }
@@ -34,16 +35,6 @@ class Game {
     }
 
     boundaryLogic() {
-        // if(this.x + this.dx > canvas.width-Ball.radius) {
-        //     this.dx = -this.dx; 
-        // } else if(this.x + this.dx < Ball.radius) {
-        //     this.dx = -this.dx;
-        // } else if(this.y + this.dy > canvas.height-Ball.radius) {
-        //     this.dy = -this.dy;
-        // } else if(this.y + this.dy < Ball.radius) {
-        //     this.dy = -this.dy;
-        // }
-            // collision logic
         if(this.x + this.dx > canvas.width-Ball.radius || this.x + this.dx < Ball.radius) {
             this.dx = -this.dx;
         }
@@ -57,24 +48,45 @@ class Game {
             // check for paddle collision if the bottom wall is hit
             if(this.x > Paddle.paddleX && this.x < Paddle.paddleX + Paddle.width) {
                 this.dy = -this.dy;
+            } else {
+                this.lives--;
+                if(!this.lives) {
+                    alert("GAME OVER");
+                } else {
+                    this.x = canvas.width/2;
+                    this.y = canvas.height-30;
+                    this.dx = 2;
+                    this.dy = -2;
+                    Paddle.paddleX = (canvas.width-Paddle.width)/2;
+                }
             }
-            // } else {
-            //     this.x = canvas.width/2;
-            //     this.y = canvas.height-30;
-            //     this.dx = 2;
-            //     this.dy = -2;
-            //     Paddle.paddleX = (canvas.width-Paddle.width)/2;
-            // }
         }
+    }
+
+    drawScore() {
+        ctx.font = "16px Arial";
+        ctx.fillStyle = "#0095DD";
+        ctx.fillText("Score: " +this.score, 8, 20); 
+    }
+
+    drawLives() {
+        ctx.font = "16px Arial";
+        ctx.fillStyle = "#0095DD";
+        ctx.fillText("Lives: " +this.lives, canvas.width-65, 20);
     }
 
     draw() {             
         ctx.clearRect(0, 0, canvas.width, canvas.height);
+        
         Bricks.draw();
         Ball.draw(this.x, this.y);
         Paddle.draw();
+        this.drawScore();
+        this.drawLives();
+
         this.boundaryLogic();
         this.collisionDetection();
+
         this.x += this.dx;
         this.y += this.dy;
 
