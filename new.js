@@ -2,57 +2,73 @@
 
 class Game {
     constructor() {
-        this.width   = canvas.width / 2;
-        this.height  = canvas.height - 30;
-        this.dWidth  = 2;
-        this.dHeight = -2;
-        this.ball    = new Ball();
+        this.x     = canvas.width / 2;
+        this.y     = canvas.height - 30;
+        this.dx    = 2;
+        this.dy    = -2;
+        this.ballRadius = 10;
+        this.ball  = new Ball();
     }
 
     boundaryLogic() {
-        if(this.width + this.dWidth > canvas.width-10 || this.width + this.dWidth < 10) {
-            this.dWidth = -this.dWidth;
-            console.log("Ah");
-        }
-
-        if(this.height + this.dHeight < 10) {
-            this.dHeight = -this.dHeight;
-            console.log("Oh");
-        }  
-
-        if(this.height + this.dHeight > canvas.height-10) {
-            console.log("Uh oh");
+        if(this.x + this.dx > canvas.width-this.ballRadius) {
+            this.dx = -this.dx; 
+            console.log("first bounce");
+        } else if(this.x + this.dx < this.ballRadius) {
+            this.dx = -this.dx;
+            console.log("second bounce");
+        } else if(this.y + this.dy > canvas.height-this.ballRadius) {
+            this.dy = -this.dy;
+            console.log("third bounce");
+        } else if(this.y + this.dy < this.ballRadius) {
+            this.dy = -this.dy;
+            console.log("fourth bounce");
         }
     }
 
-    draw() {
+    draw() {             
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-        this.ball.drawBall(this.width, this.height);
+        this.ball.drawBall(this.x, this.y, this.ballRadius);
         this.boundaryLogic();
-        this.width += this.dWidth;
-        this.height += this.dHeight;
+        this.x += this.dx;
+        this.y += this.dy;
 
         requestAnimationFrame(this.draw.bind(this));
     }
 }
 
 class Ball {
-    constructor() {
-        this.ballRadius = 10;
-    }
 
-    drawBall(height, width) {
+    drawBall(width, height, ballRadius) {
         ctx.beginPath();
-        ctx.arc(width, height, this.ballRadius, 0, Math.PI*2);
+        ctx.arc(width, height, ballRadius, 0, Math.PI*2);
         ctx.fillStyle = "#0095DD";
         ctx.fill();
         ctx.closePath();
     }
 }
 
+
+class Paddle {
+    constructor() {
+
+    }
+}
+
+
+class Brick {
+    constructor() {
+        
+    }
+}
+
+
+
 const canvas = document.getElementById("myCanvas");
 const ctx    = canvas.getContext('2d');
-new Game().draw();
+document.addEventListener("click", () => {
+    new Game().draw();
+});
 // 'use strict';
 // class Ball {
 
