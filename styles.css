@@ -1,6 +1,8 @@
 * { padding: 0; margin: 0; text-align: center;  }
 
-canvas { background: #212121; display: block; margin: 30px auto; }
+body { background: #000; }
+
+canvas { background: #000; display: block; margin: 30px auto; border: 3px solid #FFF; }
 
 #start, #restart { height: 40px; width: 80px; }
 

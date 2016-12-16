@@ -29,7 +29,7 @@ class Game {
             for(let r = 0; r < Bricks.rowCount; r++) {
                 let b = Bricks.bricks[c][r];
                 if(b.status == 1) {
-                    if(this.x > b.x && this.x < b.x+Bricks.width && this.y > b.y && this.y < b.y+Bricks.height) {
+                    if(this.x > b.x && this.x < b.x+(Bricks.width+5) && this.y > b.y && this.y < b.y+(Bricks.height+5)) {
                         this.dy = -this.dy;
                         b.status = 0;
                         this.score++;
@@ -51,7 +51,7 @@ class Game {
             this.dy = -this.dy;
         }
 
-        if(this.y + this.dy > canvas.height-Ball.radius) {
+        if(this.y + this.dy > canvas.height-20) {
 
             // check for paddle collision if the bottom wall is hit
             if(this.x > Paddle.paddleX && this.x < Paddle.paddleX + Paddle.width) {
@@ -72,15 +72,15 @@ class Game {
     }
 
     drawScore() {
-        ctx.font = "16px Arial";
+        ctx.font = "16px Verdana";
         ctx.fillStyle = "#FFF";
         ctx.fillText("Score: " +this.score, 8, 20); 
     }
 
     drawLives() {
-        ctx.font = "16px Arial";
+        ctx.font = "16px Verdana";
         ctx.fillStyle = "#FFF";
-        ctx.fillText("Lives: " +this.lives, canvas.width-65, 20);
+        ctx.fillText("Lives: " +this.lives, canvas.width-70, 20);
     }
 
     draw() {             
