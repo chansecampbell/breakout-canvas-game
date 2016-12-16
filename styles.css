@@ -4,8 +4,10 @@ body { background: #000; }
 
 canvas { background: #000; display: block; margin: 30px auto; border: 3px solid #FFF; }
 
-#start, #restart { height: 40px; width: 80px; }
+#start, #restart { height: 40px; width: 80px; background-color: black; border: 3px solid #FFF; color: #FFF; font-family: 'Courier New'; }
 
-#start { display: inline-block; }
+#start, #message { display: inline-block; }
 
 #restart { display: none; }
+
+#message { width: 500px; margin: 20px 0 10px 0; color: #FFF; font-family: 'Courier New'; }

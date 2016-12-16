@@ -21,7 +21,8 @@ class Game {
         this.dx     = 3;
         this.dy     = -3;
         this.score  = 0;
-        this.lives  = 3;
+        this.lives  = 2;
+        this.running = true;
     }
 
     collisionDetection() {
@@ -34,7 +35,7 @@ class Game {
                         b.status = 0;
                         this.score++;
                         if(this.score == Bricks.rowCount*Bricks.columnCount) {
-                            alert("YOU WIN, CONGRATULATIONS!");
+                            this.drawGameOver();
                         }
                     }
                 }  
@@ -58,29 +59,55 @@ class Game {
                 this.dy = -this.dy;
             } else {
                 this.lives--;
-                if(!this.lives) {
-                    alert("GAME OVER");
-                } else {
-                    this.x = canvas.width/2;
-                    this.y = canvas.height-30;
-                    this.dx = 3;
-                    this.dy = -3;
-                    Paddle.paddleX = (canvas.width-Paddle.width)/2;
+                if(this.lives > 0) {
+                    this.drawLifeLost();
                 }
-            }
+                else {
+                    this.drawGameOver();
+                }
+            } 
         }
     }
 
     drawScore() {
-        ctx.font = "16px Verdana";
+        ctx.font = "16px Courier New";
         ctx.fillStyle = "#FFF";
         ctx.fillText("Score: " +this.score, 8, 20); 
     }
 
     drawLives() {
-        ctx.font = "16px Verdana";
+        ctx.font = "16px Courier New";
         ctx.fillStyle = "#FFF";
-        ctx.fillText("Lives: " +this.lives, canvas.width-70, 20);
+        ctx.fillText("Lives: " +this.lives, canvas.width-100, 20);
+    }
+
+    continueGame() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);   
+        this.running = true;
+        this.x      = canvas.width / 2;
+        this.y      = canvas.height - 30;
+        this.dx     = 3;
+        this.dy     = -3;
+        this.draw();
+    }
+
+    drawLifeLost() {
+        this.running = false;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);   
+        const message = "You lose a life. You have " + this.lives + " remaining.";
+        ctx.font = "18px Courier New";
+        ctx.fillStyle = "#FFF";
+        ctx.fillText(message, 40, canvas.height/2);
+        setTimeout(this.continueGame.bind(this), 3000);
+    }
+
+    drawGameOver() {
+        this.running = false;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);   
+        const message = this.lives > 0 ? "You've won the game, congratulations!" : "You're out of lives, it's game over!";
+        ctx.font = "18px Courier New";
+        ctx.fillStyle = "#FFF";
+        ctx.fillText(message, 40, canvas.height/2);
     }
 
     draw() {             
@@ -98,6 +125,6 @@ class Game {
         this.x += this.dx;
         this.y += this.dy;
 
-        requestAnimationFrame(this.draw.bind(this));
+        if(this.running) { requestAnimationFrame(this.draw.bind(this)); }
     }
 }

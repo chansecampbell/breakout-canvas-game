@@ -10,10 +10,7 @@
 - Both the ES5 and ES6 version can then be run on a simple python server.
 
 ##Features to add:
-	- Stop the lives going below 0
-	- Reset functionality
-	- Tidy up the game logic
-	- Material design
-	- Create 5 levels
+	- Add Reset functionality
+	- Tidy up the game logic by splitting out the ui drawings and event listeners
 	- Create 3 different speed difficulties
     - Create customisable ui
