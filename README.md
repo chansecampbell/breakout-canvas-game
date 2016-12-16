@@ -1,11 +1,11 @@
 #Breakout - the canvas game
 ---
 
-- This is a simple example of the game **Breakout** made in canvas.
+- This is a simple example of the game **Breakout** made in canvas using ES6 syntax. This version is currently unfinished.
 
-- The newly built ES6 version can be found in `js/game.js`. To run this version you must first do a `npm i` and `webpack` in the terminal. This version is currently unfinished.
+- The newly built ES6 version can be found in `js/game.js`. To run this version you must first do a `npm i` and `webpack` in the terminal. Please note that you need webpack installed globally first to run this command. 
 
-- The original game, built in ES5 can be found in `js/app.js`. To run this version simply comment it into the html.
+- The original game that I built in ES5 can be found in `js/app.js`. To run this version simply comment it into the html and run the server.
 
 - Both the ES5 and ES6 version can then be run on a simple python server.
 

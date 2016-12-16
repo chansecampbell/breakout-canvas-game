@@ -39,7 +39,7 @@ class Paddle {
     draw() {
         ctx.beginPath();
         ctx.rect(this.paddleX, canvas.height-this.height, this.width, this.height);
-        ctx.fillStyle = "#0095DD";
+        ctx.fillStyle = "#E040FB";
         ctx.fill();
         ctx.closePath();
         document.addEventListener("keydown", this.keyDownHandler.bind(this), false);

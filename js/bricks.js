@@ -2,15 +2,17 @@
 const canvas = document.getElementById("myCanvas");
 const ctx    = canvas.getContext('2d');
 
+const colors = ["#f44336", "#FFEB3B", "#FF9800", "#8BC34A", "#03A9F4", ];
+
 class Bricks {
     constructor() {
-    	this.rowCount = 3;
-    	this.columnCount = 5;
+    	this.rowCount = 5;
+    	this.columnCount = 8;
     	this.width = 75;
-    	this.height = 20;
-    	this.padding = 10;
-    	this.offsetTop = 30;
-    	this.offsetLeft = 30;
+    	this.height = 15;
+    	this.padding = 5;
+    	this.offsetTop = 60;
+    	this.offsetLeft = 60;
     	this.bricks = [];
     	this.build();
     }
@@ -34,7 +36,7 @@ class Bricks {
 	                this.bricks[c][r].y = brickY;
 	                ctx.beginPath();
 	                ctx.rect(brickX, brickY, this.width, this.height);
-	                ctx.fillStyle = "#0095DD";
+	                ctx.fillStyle = colors[r];
 	                ctx.fill();
 	                ctx.closePath();
             	}

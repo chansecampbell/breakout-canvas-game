@@ -18,8 +18,8 @@ class Game {
     constructor() {
         this.x      = canvas.width / 2;
         this.y      = canvas.height - 30;
-        this.dx     = 2;
-        this.dy     = -2;
+        this.dx     = 3;
+        this.dy     = -3;
         this.score  = 0;
         this.lives  = 3;
     }
@@ -63,8 +63,8 @@ class Game {
                 } else {
                     this.x = canvas.width/2;
                     this.y = canvas.height-30;
-                    this.dx = 2;
-                    this.dy = -2;
+                    this.dx = 3;
+                    this.dy = -3;
                     Paddle.paddleX = (canvas.width-Paddle.width)/2;
                 }
             }
@@ -73,13 +73,13 @@ class Game {
 
     drawScore() {
         ctx.font = "16px Arial";
-        ctx.fillStyle = "#0095DD";
+        ctx.fillStyle = "#FFF";
         ctx.fillText("Score: " +this.score, 8, 20); 
     }
 
     drawLives() {
         ctx.font = "16px Arial";
-        ctx.fillStyle = "#0095DD";
+        ctx.fillStyle = "#FFF";
         ctx.fillText("Lives: " +this.lives, canvas.width-65, 20);
     }
 
