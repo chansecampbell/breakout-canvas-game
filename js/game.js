@@ -16,6 +16,7 @@ class Game {
         this.score  = 0;
         this.lives  = 2;
         this.running = true;
+        this.draw();
     }
 
     collisionDetection() {
@@ -65,10 +66,10 @@ class Game {
     pause() {
         this.running = false;
         Ui.drawLifeDown(this.lives);
-        setTimeout(this.continue.bind(this), 3000);
+        setTimeout(this.restart.bind(this), 3000);
     }
 
-    continue() {
+    restart() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);   
         this.running = true;
         this.x      = canvas.width / 2;

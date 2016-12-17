@@ -8,10 +8,13 @@ import Game from "./game";
 import Paddle from "./paddle";
 
 start.addEventListener("click", () => {
-	console.log("Starting");
 	Game.draw();
 	start.style.display = "none";
     restart.style.display = "inline-block";
+});
+
+restart.addEventListener("click", () => {
+	// To do 
 });
 
 document.addEventListener("keydown", (event) => {
