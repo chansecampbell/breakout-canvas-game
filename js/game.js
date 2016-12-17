@@ -1,14 +1,6 @@
 'use strict';
 const canvas = document.getElementById("myCanvas");
 const ctx    = canvas.getContext('2d');
-const start  = document.getElementById("start");
-const restart = document.getElementById("restart");
-
-start.addEventListener("click", () => {
-    new Game().draw();
-    start.style.display = "none";
-    restart.style.display = "inline-block";
-});
 
 import Ball from "./ball";
 import Paddle from "./paddle";
@@ -128,3 +120,11 @@ class Game {
         if(this.running) { requestAnimationFrame(this.draw.bind(this)); }
     }
 }
+
+export default (new Game);
+
+
+
+
+
+

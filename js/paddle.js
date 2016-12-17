@@ -42,8 +42,6 @@ class Paddle {
         ctx.fillStyle = "#E040FB";
         ctx.fill();
         ctx.closePath();
-        document.addEventListener("keydown", this.keyDownHandler.bind(this), false);
-        document.addEventListener("keyup", this.keyUpHandler.bind(this), false);
         this.move();
     }
 }
