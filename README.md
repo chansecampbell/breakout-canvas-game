@@ -13,6 +13,6 @@
 	- Add Reset functionality
 	- Tidy up the game logic by splitting out:
 		- Message displays into `ui.js`
-		- Event listeners into `events.js`
+		- Event listeners into `app.js`
 	- Create 3 different speed difficulties
     - Create customisable ui

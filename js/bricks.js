@@ -12,7 +12,7 @@ class Bricks {
     	this.height = 15;
     	this.padding = 5;
     	this.offsetTop = 60;
-    	this.offsetLeft = 70;
+    	this.offsetLeft = 75;
     	this.bricks = [];
     	this.build();
     }

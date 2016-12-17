@@ -2,6 +2,7 @@
 const canvas = document.getElementById("myCanvas");
 const ctx    = canvas.getContext('2d');
 
+import Ui from "./ui";
 import Ball from "./ball";
 import Paddle from "./paddle";
 import Bricks from "./bricks";
@@ -27,7 +28,7 @@ class Game {
                         b.status = 0;
                         this.score++;
                         if(this.score == Bricks.rowCount*Bricks.columnCount) {
-                            this.drawGameOver();
+                            this.end();
                         }
                     }
                 }  
@@ -52,28 +53,22 @@ class Game {
             } else {
                 this.lives--;
                 if(this.lives > 0) {
-                    this.drawLifeLost();
+                    this.pause();
                 }
                 else {
-                    this.drawGameOver();
+                    this.end();
                 }
             } 
         }
     }
 
-    drawScore() {
-        ctx.font = "16px Courier New";
-        ctx.fillStyle = "#FFF";
-        ctx.fillText("Score: " +this.score, 8, 20); 
+    pause() {
+        this.running = false;
+        Ui.drawLifeDown(this.lives);
+        setTimeout(this.continue.bind(this), 3000);
     }
 
-    drawLives() {
-        ctx.font = "16px Courier New";
-        ctx.fillStyle = "#FFF";
-        ctx.fillText("Lives: " +this.lives, canvas.width-100, 20);
-    }
-
-    continueGame() {
+    continue() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);   
         this.running = true;
         this.x      = canvas.width / 2;
@@ -83,23 +78,9 @@ class Game {
         this.draw();
     }
 
-    drawLifeLost() {
+    end() {
         this.running = false;
-        ctx.clearRect(0, 0, canvas.width, canvas.height);   
-        const message = "You lose a life. You have " + this.lives + " remaining.";
-        ctx.font = "18px Courier New";
-        ctx.fillStyle = "#FFF";
-        ctx.fillText(message, 40, canvas.height/2);
-        setTimeout(this.continueGame.bind(this), 3000);
-    }
-
-    drawGameOver() {
-        this.running = false;
-        ctx.clearRect(0, 0, canvas.width, canvas.height);   
-        const message = this.lives > 0 ? "You've won the game, congratulations!" : "You're out of lives, it's game over!";
-        ctx.font = "18px Courier New";
-        ctx.fillStyle = "#FFF";
-        ctx.fillText(message, 40, canvas.height/2);
+        Ui.drawGameOver(this.lives);
     }
 
     draw() {             
@@ -108,8 +89,8 @@ class Game {
         Bricks.draw();
         Ball.draw(this.x, this.y);
         Paddle.draw();
-        this.drawScore();
-        this.drawLives();
+        Ui.drawScore(this.score);
+        Ui.drawLives(this.lives);
 
         this.boundaryLogic();
         this.collisionDetection();

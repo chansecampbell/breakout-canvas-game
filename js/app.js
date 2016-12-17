@@ -12,7 +12,7 @@ start.addEventListener("click", () => {
 	Game.draw();
 	start.style.display = "none";
     restart.style.display = "inline-block";
-	});
+});
 
 document.addEventListener("keydown", (event) => {
 	Paddle.keyDownHandler(event);
