@@ -14,7 +14,7 @@ class Game {
         this.dx     = 3;
         this.dy     = -3;
         this.score  = 0;
-        this.lives  = 2;
+        this.lives  = 3;
         this.running = true;
         this.draw();
     }
@@ -72,10 +72,11 @@ class Game {
     restart() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);   
         this.running = true;
-        this.x      = canvas.width / 2;
-        this.y      = canvas.height - 30;
-        this.dx     = 3;
-        this.dy     = -3;
+        this.x       = canvas.width / 2;
+        this.y       = canvas.height - 30;
+        this.dx      = 3;
+        this.dy      = -3;
+        Paddle.paddleX = (canvas.width-Paddle.width)/2;    
         this.draw();
     }
 
@@ -103,7 +104,7 @@ class Game {
     }
 }
 
-export default (new Game);
+export default Game;
 
 
 

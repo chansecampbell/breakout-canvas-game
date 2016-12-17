@@ -10,4 +10,4 @@ canvas { background: #000; display: block; margin: 30px auto; border: 3px solid 
 
 #restart { display: none; }
 
-#message { width: 500px; margin: 20px 0 10px 0; color: #FFF; font-family: 'Courier New'; }
+#message { width: 500px; margin-top: 50px; color: #FFF; font-family: 'Courier New'; }
