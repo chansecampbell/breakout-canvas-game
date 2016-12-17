@@ -11,6 +11,8 @@
 
 ##Features to add:
 	- Add Reset functionality
-	- Tidy up the game logic by splitting out the ui drawings and event listeners
+	- Tidy up the game logic by splitting out:
+		- Message displays into `ui.js`
+		- Event listeners into `events.js`
 	- Create 3 different speed difficulties
     - Create customisable ui
