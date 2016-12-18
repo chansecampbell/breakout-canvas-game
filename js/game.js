@@ -72,10 +72,10 @@ class Game {
     restart() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);   
         this.running = true;
-        this.x       = canvas.width / 2;
-        this.y       = canvas.height - 30;
-        this.dx      = 3;
-        this.dy      = -3;
+        this.x = canvas.width / 2;
+        this.y = canvas.height - 30;
+        this.dx = 3;
+        this.dy = -3;
         Paddle.paddleX = (canvas.width-Paddle.width)/2;    
         this.draw();
     }

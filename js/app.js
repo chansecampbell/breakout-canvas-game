@@ -7,14 +7,12 @@ const restart = document.getElementById("restart");
 import Game from "./game";
 import Paddle from "./paddle";
 
-start.addEventListener("click", () => {
-	const game = new Game;
-	start.style.display = "none";
-    restart.style.display = "inline-block";
-});
+const game = Game;
 
-restart.addEventListener("click", () => {
-	// To do
+start.addEventListener("click", () => {
+	new game;	
+	start.style.display = "none";
+ 	// restart.style.display = "inline-block";
 });
 
 document.addEventListener("keydown", (event) => {
